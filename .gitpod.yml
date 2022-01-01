@@ -1,0 +1,13 @@
+
+tasks:
+  - init: |
+      python -m venv venv
+      source ./venv/bin/activate
+      pip3 install -r requirements.txt
+
+vscode:
+  extensions:
+    - ms-toolsai.jupyter
+    - ms-python.python
+    - vscode-icons-team.vscode-icons
+    - ritwickdey.liveserver

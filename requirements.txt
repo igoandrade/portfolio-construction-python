@@ -1,0 +1,13 @@
+pip
+numpy
+scipy
+sympy
+pandas
+matplotlib
+seaborn
+plotly
+yfinance
+statsmodels
+scikit-learn
+graphviz
+jupyterlab
