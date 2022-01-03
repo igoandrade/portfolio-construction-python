@@ -1,4 +1,3 @@
-
 tasks:
   - init: |
       python -m venv venv
@@ -11,3 +10,9 @@ vscode:
     - ms-python.python
     - vscode-icons-team.vscode-icons
     - ritwickdey.liveserver
+
+    - james-yu.latex-workshop
+
+ports:
+  - port: 3000
+    onOpen: open-preview
