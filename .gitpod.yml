@@ -13,8 +13,8 @@ vscode:
     - ms-python.python
     - vscode-icons-team.vscode-icons
     - ritwickdey.liveserver
-
     - james-yu.latex-workshop
+    - dracula-theme.theme-dracula
 
 ports:
   - port: 3000
