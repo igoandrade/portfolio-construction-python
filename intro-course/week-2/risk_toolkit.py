@@ -230,7 +230,15 @@ def optimal_weights(er, cov, n_points=25):
     weights = [minimize_vol(target_return, er, cov) for target_return in target_rs]
     return weights
 
-def plot_ef(er, cov, n_points=25, riskfree_rate=0, show_cml=False, style='.-'):
+def gmv(cov):
+    """
+    Returns the weight of the Global Minimum Vol portfolio
+    given the covariance matrix
+    """
+    n = cov.shape[0]
+    return msr(0, np.repeat(1, n), cov)
+
+def plot_ef(er, cov, n_points=25, riskfree_rate=0, show_cml=False, show_ew=False, show_gmv=False, style='.-'):
     """
     Plots the n-asset efficient frontier
     """
@@ -245,6 +253,19 @@ def plot_ef(er, cov, n_points=25, riskfree_rate=0, show_cml=False, style='.-'):
     ax.set_title('Efficient Frontier',fontweight ="bold")
     ax.set_xlabel('Volatility')
     ax.set_ylabel('Returns')
+    if show_ew:
+        n = er.shape[0]
+        w_ew = np.repeat(1/n, n)
+        r_ew = portfolio_return(w_ew, er)
+        vol_ew = portfolio_vol(w_ew, cov)
+        # Display EW
+        ax.plot([vol_ew], [r_ew], color='goldenrod', marker='o', linestyle='dashed')
+    if show_gmv:
+        w_gmv = gmv(cov)
+        r_gmv = portfolio_return(w_gmv, er)
+        vol_gmv = portfolio_vol(w_gmv, cov)
+        # Display GMV
+        ax.plot([vol_gmv], [r_gmv], color='midnightblue', marker='o', linestyle='dashed')
     if show_cml:
         ax.set_xlim(left = 0)
         w_msr = msr(riskfree_rate, er, cov)
